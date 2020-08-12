@@ -59,6 +59,16 @@ describe("Likes", () => {
         likes: 1,
       });
 
+    apiMock
+      .onGet('repositories')
+      .reply(200, [{
+        id: repositoryId,
+        title: "Desafio React Native",
+        url: "https://github.com/josepholiveira",
+        techs: ["React Native", "Node.js"],
+        likes: 1,
+      }]);
+
     await actWait();
 
     fireEvent.press(getByTestId(`like-button-${repositoryId}`));
@@ -76,6 +86,16 @@ describe("Likes", () => {
         techs: ["React Native", "Node.js"],
         likes: 2,
       });
+
+    apiMock
+      .onGet('repositories')
+      .reply(200, [{
+        id: repositoryId,
+        title: "Desafio React Native",
+        url: "https://github.com/josepholiveira",
+        techs: ["React Native", "Node.js"],
+        likes: 2
+      }]);
 
     fireEvent.press(getByTestId(`like-button-${repositoryId}`));
 
